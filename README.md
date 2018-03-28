@@ -97,6 +97,6 @@ Result are shown in 2 format: json format for the full embedder result, and plot
 
 * The 2-D visualisation result (example):
 
-![Result visualization](https://github.com/phamdinhthang/neural_embedder/blob/master/misc/embedder_architecture.png "")
+![Result visualization](https://github.com/phamdinhthang/neural_embedder/blob/master/misc/work_class.png "")
 
 **Note: result and performance may varies depend on the dataset and selected models. **
