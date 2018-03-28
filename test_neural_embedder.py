@@ -12,9 +12,6 @@ import json
 import sys
 
 def neural_embed(data_path, label_col, epochs):
-    src_path = os.path.abspath(os.path.dirname(__file__))
-    data_path, label_col = os.path.join(src_path, 'adult_income.csv'), 'high_income'
-
     data = DataLoader(data_path, label_col)
     print("Numerical variables:",data.numerical_cols)
     print("Categorical variables:",data.categorical_cols)
@@ -32,7 +29,7 @@ def neural_embed(data_path, label_col, epochs):
 
     if valid==True:
         embedder = NeuralEmbedder(data, layer_nodes=[100, 200, 200, 100])
-        res = embedder.perform_neural_embedding(learning_rate=0.001, l2_beta=0.01, epochs=10, mini_batch_size=1000)
+        res = embedder.perform_neural_embedding(learning_rate=0.001, l2_beta=0.01, epochs=epochs, mini_batch_size=1000)
 
         res_path=os.path.join(src_path,'result.txt')
         NeuralEmbedder.save_to_file(res,res_path)
