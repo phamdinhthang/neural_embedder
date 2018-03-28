@@ -34,7 +34,7 @@ def neural_embed(data_path, label_col, epochs):
         embedder = NeuralEmbedder(data, layer_nodes=[100, 200, 200, 100])
         res = embedder.perform_neural_embedding(learning_rate=0.001, l2_beta=0.01, epochs=10, mini_batch_size=1000)
 
-        res_path='C:/Users/admin/Desktop/embedded_result.txt'
+        res_path=os.path.join(src_path,'result.txt')
         NeuralEmbedder.save_to_file(res,res_path)
 
         with open(res_path,'r') as f:
@@ -42,8 +42,7 @@ def neural_embed(data_path, label_col, epochs):
             NeuralEmbedder.visualise_embedding_result(json.loads(json_content))
 
 if __name__=='__main__':
-#    data_path = sys.argv[1]
-#    label_col = sys.argv[2]
-#    epochs = sys.argv[3]
-#    neural_embed(data_path, label_col, epochs)
-    neural_embed(None, None, None)
+    data_path = sys.argv[1]
+    label_col = sys.argv[2]
+    epochs = sys.argv[3]
+    neural_embed(data_path, label_col, epochs)
