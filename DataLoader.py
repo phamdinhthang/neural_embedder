@@ -54,6 +54,12 @@ class DataLoader(object):
         if embedded_length.keys() != self.categorical_OHE_length.keys():
             print("Invalid embedded length type. Dict keys must equal categorical_OHE_length")
             return None
+
+        for key,val in embedded_length.items():
+            if not isinstance(val,int):
+                print("Invalid embedded length for key:",key)
+                return None
+
         self.embedded_vectors_length = embedded_length
         return True
 

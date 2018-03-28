@@ -73,7 +73,8 @@ def main():
 
     models = {'Logistic Regression':LogisticRegression(),
               'Random Forest':RandomForestClassifier(),
-              'MLP':MLPClassifier()}
+              'MLP':MLPClassifier(),
+              'SVM':SVC()}
 
     print("-------------One hot encode--------------")
     one_hot_encode_test(df,label_col,models)

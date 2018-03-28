@@ -40,12 +40,13 @@ def scatter_plot(x,y,label,var_name):
     plt.title("Variable name: "+var_name)
     plt.show()
 
-class EntityEmbedder(object):
+class NeuralEmbedder(object):
     @staticmethod
     def save_to_file(result_dic, filepath):
         try:
             with open(filepath,'w') as f:
                 f.write(json.dumps(result_dic))
+            print("Successfully save embedding result file. Check file at:",filepath)
         except:
             print("Cannot save to:",filepath)
 
@@ -64,7 +65,7 @@ class EntityEmbedder(object):
 
             df = pd.DataFrame(df_dic_list)
             df_transformed = tsne_2d_transformed(df, 'label')
-            print(df_transformed)
+#            print(df_transformed)
 
             feature1 = list(df_transformed['feature_0'].values)
             feature2 = list(df_transformed['feature_1'].values)
@@ -89,7 +90,7 @@ class EntityEmbedder(object):
         self.data = data
         self.layer_nodes = layer_nodes
 
-    def perform_entity_embedding(self,learning_rate=0.0001, l2_beta=0.01, epochs=20, mini_batch_size=1000):
+    def perform_neural_embedding(self,learning_rate=0.0001, l2_beta=0.01, epochs=20, mini_batch_size=1000):
         X_train, X_test, y_train, y_test = self.data.get_train_test_split_array(test_size=0.2)
 
         #Place holder for inputs and outputs
@@ -125,11 +126,11 @@ class EntityEmbedder(object):
         dense_layer_weights = []
         input_tensor = concatenated_layer
         for index, n_node in enumerate(self.layer_nodes):
-            input_tensor, w = EntityEmbedder.create_dense_layer(input_tensor, n_node, 'dense_layer_'+str(index))
+            input_tensor, w = NeuralEmbedder.create_dense_layer(input_tensor, n_node, 'dense_layer_'+str(index))
             dense_layer_weights.append(w)
 
         #output layer with softmax activation
-        output_layer, _ = EntityEmbedder.create_dense_layer(input_tensor, self.data.label_OHE_ncols, 'output_layer', use_relu=False)
+        output_layer, _ = NeuralEmbedder.create_dense_layer(input_tensor, self.data.label_OHE_ncols, 'output_layer', use_relu=False)
 
         y_output_probs = tf.nn.softmax(output_layer, name='y_output_probs')
         y_output_labels = tf.argmax(y_output_probs, 1, name = 'y_output_labels')
