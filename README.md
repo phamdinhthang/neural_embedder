@@ -31,3 +31,72 @@ The embedded vector length for each categorical variable were set:
 ```
 data.set_embedded_length({'work_class': 4, 'education': 10, 'marital_status': 4, 'occupation': 8, 'relationship': 4, 'race': 3, 'gender': 1, 'native_country': 15})
 ```
+
+To run the embedder:
+```
+python test_neural_embedder.py data_path label_col epochs
+```
+
+The three parameters are:
+* data_path: path to the .csv dataset file
+* label_col: column name of the label
+* epochs: number of epochs to run the Gradient Descent optimization
+
+### 5. Result inspection
+Result are shown in 2 format: json format for the full embedder result, and plot format for 2-D visualization of the result (using t-SNE dimensionality reduction).
+
+* The json full result (example):
+```
+{
+  "work_class": {
+    " Federal-gov": [
+      -0.08032485097646713,
+      0.16355359554290771,
+      -0.04732890799641609,
+      -0.04210720211267471
+    ],
+    " Local-gov": [
+      -0.33841240406036377,
+      0.130662202835083,
+      0.3094033896923065,
+      0.005182128865271807
+    ],
+    " Private": [
+      0.00808934960514307,
+      -0.10201625525951385,
+      -0.3162333071231842,
+      -0.32399260997772217
+    ],
+    " Self-emp-inc": [
+      -0.1295398622751236,
+      0.23013338446617126,
+      0.3397238254547119,
+      -0.40874695777893066
+    ],
+    " Self-emp-not-inc": [
+      0.3612673282623291,
+      -0.025096414610743523,
+      0.03165968880057335,
+      0.05519421398639679
+    ],
+    " State-gov": [
+      -0.28594574332237244,
+      0.22011640667915344,
+      -0.3163900077342987,
+      -0.1440461426973343
+    ],
+    " Without-pay": [
+      0.0822419822216034,
+      -0.021597225219011307,
+      0.44229134917259216,
+      0.01329183578491211
+    ]
+  }
+}
+```
+
+* The 2-D visualisation result (example):
+
+![Result visualization](https://github.com/phamdinhthang/neural_embedder/blob/master/misc/embedder_architecture.png "")
+
+**Note: result and performance may varies depend on the dataset and selected models. **
