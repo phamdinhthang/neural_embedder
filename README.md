@@ -7,7 +7,7 @@ These implementation takes ideas from this [paper](https://arxiv.org/abs/1604.06
 Converting categorical variables to numerical variables is an importance step of the data processing pipeline. Many machine learning model accept only numerical input: logistic regression, support vector machine, neural network. Many machine learning library (scikit-learn, numpy, tensorflow) also require input to be numerical as well.
 
 ### 2. Embedder architecture
-The architecture of the embedder is simply a shallow neural network with 2 layers: one input and one output. Input layer is the one-hot encoder vector of the categorical variable, output layer is the embedded vector.
+The architecture of the embedder is simply a shallow neural network with 2 layers: one input and one output. Input layer is the one-hot encoder vector of the categorical variable, output layer is the embedded vector. Dense connection between 2 layers composed of weights only. There is no bias unit
 
 ![Embedder layer](https://github.com/phamdinhthang/neural_embedder/blob/master/misc/embedding_layer.png "")
 
